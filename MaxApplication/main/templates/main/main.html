@@ -9,7 +9,7 @@
 <!-- Отображение информации о пользователе -->
 {% if request.session.username %}
     <div style="text-align: right; padding: 10px;">
-        <span>Вы вошли как: {{ request.session.username }}</span>
+        <span>Вы вошли как: {{ request.session.username }}. Ваша роль: {{request.session.role}}</span>
         <a href="{% url 'logout' %}" style="margin-left: 10px;">Выйти</a>
     </div>
 {% else %}
