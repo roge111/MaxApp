@@ -21,12 +21,32 @@
 
 <h1>Тестовая страница</h1>
 
- <a href="{% url 'yandex_gpt' %}" class="map-button">
-        <button>Yandex GPT</button>
+<div style="margin: 20px 0;">
+    <h2>Волонтерская система</h2>
+    
+    {% if request.session.username %}
+        {% if request.session.role == 'Нуждающийся' %}
+            <p>Вы вошли как нуждающийся. Вы можете подать заявку на волонтерскую помощь:</p>
+            <a href="{% url 'create_volunteer_request' %}" class="map-button">
+                <button>Подать заявку на помощь</button>
+            </a>
+        {% elif request.session.role == 'Волонтёр' %}
+            <p>Вы вошли как волонтер. Вы можете просмотреть и принять заявки на помощь:</p>
+            <a href="{% url 'view_volunteer_requests' %}" class="map-button">
+                <button>Просмотреть заявки</button>
+            </a>
+        {% endif %}
+    {% else %}
+        <p>Для работы с волонтерской системой необходимо <a href="{% url 'logIn' %}">войти</a> или <a href="{% url 'register' %}">зарегистрироваться</a>.</p>
+    {% endif %}
+</div>
+
+<a href="{% url 'yandex_gpt' %}" class="map-button">
+    <button>Yandex GPT</button>
 </a>
 
 <a href="{% url 'register' %}" class="map-button">
-        <button>Регистрация</button>
+    <button>Регистрация</button>
 </a>
 
 </body>
