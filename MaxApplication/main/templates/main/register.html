@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <style>
+        .error-message {
+            color: red;
+            font-weight: bold;
+        }
+        .success-message {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Регистрация</h1>
+    
+    {% if message %}
+        <div class="{% if 'уже существует' in message %}error-message{% else %}success-message{% endif %}">
+            {{ message }}
+        </div>
+    {% endif %}
+    
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <label for="username">Введите логин:</label>
+        <input type="text" id="username" name="username" required>
+        <br><br>
+        <label for="password">Введите пароль:</label>
+        <input type="password" id="password" name="password" required>
+        <br><br>
+        <input type="submit" value="Отправить">
+    </form>
+    
+    <br>
+    <a href="{% url 'main' %}">Вернуться на главную</a>
+</body>
+</html>
