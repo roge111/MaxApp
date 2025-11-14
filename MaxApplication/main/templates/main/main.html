@@ -6,12 +6,28 @@
     <title>Тестовая страница</title>
 </head>
 <body>
+<!-- Отображение информации о пользователе -->
+{% if request.session.username %}
+    <div style="text-align: right; padding: 10px;">
+        <span>Вы вошли как: {{ request.session.username }}</span>
+        <a href="{% url 'logout' %}" style="margin-left: 10px;">Выйти</a>
+    </div>
+{% else %}
+    <div style="text-align: right; padding: 10px;">
+        <a href="{% url 'logIn' %}">Войти</a> |
+        <a href="{% url 'register' %}">Регистрация</a>
+    </div>
+{% endif %}
 
-    <h1>Тестовая страница</h1>
+<h1>Тестовая страница</h1>
 
-     <a href="{% url 'yandex_gpt' %}" class="map-button">
-            <button>Yandex GPT</button>
-    </a>
-    
+ <a href="{% url 'yandex_gpt' %}" class="map-button">
+        <button>Yandex GPT</button>
+</a>
+
+<a href="{% url 'register' %}" class="map-button">
+        <button>Регистрация</button>
+</a>
+
 </body>
 </html>
